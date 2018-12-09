@@ -7,8 +7,11 @@ logging:
       audit: fatal
       resultset: fatal
       connection: fatal
-    org.springframework:
-      orm: debug
+    org:
+      springframework:
+        orm: debug
+#      hibernate:
+#        stat: debug
 
 log4jdbc:
   dump:
@@ -24,6 +27,7 @@ spring:
     open-in-view: false
     properties:
       hibernate:
+        generate_statistics: true
         format_sql: true
         order_inserts: true
         order_updates: true
@@ -31,5 +35,17 @@ spring:
           batch_size: 20
           fetch_size: 20
           batch_versioned_data: true
+#        javax.persistence.sharedCache.mode: ENABLE_SELECTIVE
+        javax.cache:
+          provider: org.ehcache.jsr107.EhcacheCachingProvider
+          uri: classpath:ehcache.xml
+        cache:
+          use_second_level_cache: true
+          default_cache_concurrency_strategy: read-write
+#          use_minimal_puts: true
+          region.factory_class: jcache
+          use_query_cache: false
+#          use_structured_entries: true
+
     hibernate:
       ddl-auto: create-drop

@@ -29,7 +29,7 @@ public abstract class BaseEntity<ID extends Serializable> implements Serializabl
 	@JsonIgnore
 	@Override
 	public boolean isNew() {
-		return getVersion() == null;
+		return getId() == null;
 	}
 
 	protected abstract Long getVersion();

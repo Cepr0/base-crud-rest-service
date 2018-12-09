@@ -7,13 +7,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.List;
-import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,26 +24,18 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
+@DynamicInsert
+@DynamicUpdate
 public class User extends LongIdEntity {
 
 	@Column(nullable = false, length = 32)
 	private String name;
 
+	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "dictionary")
 	@ManyToMany
-	private List<Role> roles;
+	private Set<Role> roles;
 
+	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "dictionary")
 	@ManyToMany
-	private List<Group> groups;
-
-	public void setRoles(List<Role> roles) {
-		if (!Objects.equals(roles, this.roles)) {
-			this.roles = roles;
-		}
-	}
-
-	public void setGroups(List<Group> groups) {
-		if (!Objects.equals(groups, this.groups)) {
-			this.groups = groups;
-		}
-	}
+	private Set<Group> groups;
 }

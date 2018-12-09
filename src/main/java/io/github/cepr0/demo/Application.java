@@ -6,12 +6,17 @@ import io.github.cepr0.demo.dictionary.role.Role;
 import io.github.cepr0.demo.dictionary.role.RoleRepo;
 import io.github.cepr0.demo.user.User;
 import io.github.cepr0.demo.user.UserRepo;
+import org.h2.tools.Server;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.EventListener;
 
+import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @SpringBootApplication
 public class Application {
@@ -30,17 +35,23 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
+	@Bean(initMethod = "start", destroyMethod = "stop")
+	public Server h2Server() throws SQLException {
+		return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092");
+	}
+
 	@EventListener
 	public void demoData(ApplicationReadyEvent e) {
-		List<Group> groups = groupRepo.saveAll(List.of(
+
+		Set<Group> groups = new HashSet<>(groupRepo.saveAll(List.of(
 				new Group("Group 1"),
 				new Group("Group 2")
-		));
+		)));
 
-		List<Role> roles = roleRepo.saveAll(List.of(
+		Set<Role> roles = new HashSet<>(roleRepo.saveAll(List.of(
 				new Role("USER"),
 				new Role("ADMIN")
-		));
+		)));
 
 		userRepo.save(new User("John Smith", roles, groups));
 	}

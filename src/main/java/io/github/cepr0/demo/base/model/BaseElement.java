@@ -19,7 +19,7 @@ public abstract class BaseElement<ID extends Serializable> extends BaseEntity<ID
 	@Version
 	private Long version;
 
-	protected void setVersion(Long version) {
+	public void setVersion(Long version) {
 		this.version = version;
 	}
 }
