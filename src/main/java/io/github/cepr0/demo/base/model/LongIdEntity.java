@@ -17,8 +17,6 @@ import static lombok.AccessLevel.PROTECTED;
 @Getter
 @Setter
 @NoArgsConstructor(access = PROTECTED)
-//@Entity
-//@Inheritance(strategy = TABLE_PER_CLASS)
 @MappedSuperclass
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "longId")
 public abstract class LongIdEntity extends BaseEntity<Long> {

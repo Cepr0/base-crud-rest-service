@@ -14,10 +14,7 @@ import javax.persistence.Version;
 @Getter
 @Setter
 @NoArgsConstructor
-//@Entity
-//@Inheritance(strategy = TABLE_PER_CLASS)
 @MappedSuperclass
-//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "dictionary")
 public abstract class Dictionary extends BaseEntity<String> {
 
 	@Id private String id;
