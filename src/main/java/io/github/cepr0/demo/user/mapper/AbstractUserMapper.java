@@ -20,8 +20,8 @@ public abstract class AbstractUserMapper implements UserMapper {
 	@Override
 	public User fromCreateRequest(UserCreateRequest request) {
 		User user = delegate.fromCreateRequest(request);
-		user.setGroups(toElements(request.getGroupIds(), groupRepo));
-		user.setRoles(toElements(request.getRoleIds(), roleRepo));
+		user.setGroups(toRefSet(request.getGroupIds(), groupRepo));
+		user.setRoles(toRefSet(request.getRoleIds(), roleRepo));
 		return user;
 	}
 
@@ -31,12 +31,12 @@ public abstract class AbstractUserMapper implements UserMapper {
 
 		Set<String> groupIds = request.getGroupIds();
 		if (groupIds != null && !groupIds.isEmpty()) {
-			user.setGroups(toElements(groupIds, groupRepo));
+			user.setGroups(toRefSet(groupIds, groupRepo));
 		}
 
 		Set<String> roleIds = request.getRoleIds();
 		if (roleIds != null && !roleIds.isEmpty()) {
-			user.setRoles(toElements(roleIds, roleRepo));
+			user.setRoles(toRefSet(roleIds, roleRepo));
 		}
 
 		return user;
@@ -45,8 +45,8 @@ public abstract class AbstractUserMapper implements UserMapper {
 	@Override
 	public UserResponse toResponse(User element) {
 		UserResponse response = delegate.toResponse(element);
-		response.setGroupIds(toIds(element.getGroups()));
-		response.setRoleIds(toIds(element.getRoles()));
+		response.setGroupIds(toRefIdSet(element.getGroups()));
+		response.setRoleIds(toRefIdSet(element.getRoles()));
 		return response;
 	}
 }
