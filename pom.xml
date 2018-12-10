@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.cepr0</groupId>
-    <artifactId>abstract-crud-web-service-demo</artifactId>
+    <artifactId>base-crud-rest-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>abstract-crud-web-service-demo</name>
+    <name>base-crud-rest-service</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
@@ -54,17 +54,23 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- JDBC logging -->
+
         <dependency>
             <groupId>com.integralblue</groupId>
             <artifactId>log4jdbc-spring-boot-starter</artifactId>
             <version>1.0.2</version>
         </dependency>
 
+        <!-- MapStruct mapper -->
+
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
         </dependency>
+
+        <!-- Hibernate 2nd cache with Ehcache -->
 
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -83,10 +89,7 @@
             <artifactId>cache-api</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-cache</artifactId>
-        </dependency>
+        <!-- Java 11 -->
 
         <dependency>
             <groupId>javax.xml.bind</groupId>
@@ -94,14 +97,12 @@
             <version>2.3.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/javax.activation/activation -->
         <dependency>
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
             <version>1.1</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime -->
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
@@ -116,6 +117,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -127,6 +129,8 @@
                             <artifactId>mapstruct-processor</artifactId>
                             <version>${org.mapstruct.version}</version>
                         </path>
+
+                        <!-- Lombok support in MapStruct -->
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
@@ -137,6 +141,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
