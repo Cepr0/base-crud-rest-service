@@ -154,4 +154,6 @@ Project uses **log4jdbc** to log JDBC queries and their results
 (see 'pom.xml' for 'log4jdbc-spring-boot-starter' dependency and corresponding settings in the 'resources/application.properties').
 It also logs Hibernate statistic which you can turn off in 'resources/application.properties'.
 
+Project uses **H2** database. You can replace it to another RDBMS - the project does not use specific SQL dialect, only **Spring Data JPA** query methods.  
+
 Project uses Java 11.    
