@@ -26,16 +26,17 @@ import java.util.Set;
 @Table(name = "users")
 @DynamicInsert
 @DynamicUpdate
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "user")
 public class User extends LongIdEntity {
 
 	@Column(nullable = false, length = 32)
 	private String name;
 
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "dictionary")
+	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "role")
 	@ManyToMany
 	private Set<Role> roles;
 
-	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "dictionary")
+	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "group")
 	@ManyToMany
 	private Set<Group> groups;
 }

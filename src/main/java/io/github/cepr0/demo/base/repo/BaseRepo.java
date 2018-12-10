@@ -1,6 +1,6 @@
 package io.github.cepr0.demo.base.repo;
 
-import io.github.cepr0.demo.base.model.BaseElement;
+import io.github.cepr0.demo.base.model.BaseEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Optional;
 
 @NoRepositoryBean
-public interface BaseRepo<ID extends Serializable, T extends BaseElement<ID>> extends JpaRepository<T, ID> {
+public interface BaseRepo<ID extends Serializable, T extends BaseEntity<ID>> extends JpaRepository<T, ID> {
 
 	default Optional<T> findElementToUpdate(ID id) {
 		return findById(id);

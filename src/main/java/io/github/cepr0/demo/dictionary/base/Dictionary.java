@@ -1,26 +1,30 @@
 package io.github.cepr0.demo.dictionary.base;
 
-import io.github.cepr0.demo.base.model.BaseElement;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.github.cepr0.demo.base.model.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+import lombok.Setter;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-
-import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
 
 @Getter
+@Setter
 @NoArgsConstructor
-@Entity
-@Inheritance(strategy = TABLE_PER_CLASS)
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "dictionary")
-public abstract class Dictionary extends BaseElement<String> {
+//@Entity
+//@Inheritance(strategy = TABLE_PER_CLASS)
+@MappedSuperclass
+//@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "dictionary")
+public abstract class Dictionary extends BaseEntity<String> {
 
 	@Id private String id;
+
+	@JsonIgnore
+	@Version
+	private Long version;
 
 	@Column(nullable = false, length = 32)
 	private String name;

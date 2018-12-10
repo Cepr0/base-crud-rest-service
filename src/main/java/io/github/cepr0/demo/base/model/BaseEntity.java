@@ -10,7 +10,7 @@ public abstract class BaseEntity<ID extends Serializable> implements Serializabl
 
 	@Override
 	public String toString() {
-		return "{id=" + getId() +	'}';
+		return getClass().getSimpleName() + "{id=" + getId() + '}';
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public abstract class BaseEntity<ID extends Serializable> implements Serializabl
 	@JsonIgnore
 	@Override
 	public boolean isNew() {
-		return getId() == null;
+		return getVersion() == null;
 	}
 
 	protected abstract Long getVersion();

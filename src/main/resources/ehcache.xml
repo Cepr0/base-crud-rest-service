@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config
         xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
-        xmlns='http://www.ehcache.org/v3'
+        xmlns='http://www.ehcache.org/v3' xmlns:jsr107="http://www.ehcache.org/v3/jsr107"
         xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.1.xsd">
 
-    <!--<service>-->
-        <!--<jsr107:defaults enable-management="false" enable-statistics="true"/>-->
-    <!--</service>-->
+    <service>
+        <jsr107:defaults enable-management="false" enable-statistics="true"/>
+    </service>
 
-    <cache alias="dictionary">
+    <cache alias="group">
         <!--<key-type>java.lang.String</key-type>-->
-        <!--<value-type>io.github.cepr0.demo.dictionary.base.Dictionary</value-type>-->
+        <!--<value-type>io.github.cepr0.demo.dictionary.group.Group</value-type>-->
         <expiry>
             <ttl unit="days">1</ttl>
         </expiry>
@@ -19,22 +19,22 @@
         </resources>
     </cache>
 
-    <!--<cache alias="role">-->
-        <!--<key-type>org.hibernate.cache.internal.CacheKeyImplementation</key-type>-->
+    <cache alias="role">
+        <!--<key-type>java.lang.String</key-type>-->
         <!--<value-type>io.github.cepr0.demo.dictionary.role.Role</value-type>-->
-        <!--<expiry>-->
-            <!--<ttl unit="seconds">180</ttl>-->
-        <!--</expiry>-->
-        <!--<resources>-->
-            <!--<heap unit="entries">2000</heap>-->
-        <!--</resources>-->
-    <!--</cache>-->
-
-    <cache alias="longId">
-        <!--<key-type>java.lang.Long</key-type>-->
-        <!--<value-type>io.github.cepr0.demo.base.model.LongIdEntity</value-type>-->
         <expiry>
-            <ttl unit="seconds">180</ttl>
+            <ttl unit="days">1</ttl>
+        </expiry>
+        <resources>
+            <heap unit="entries">2000</heap>
+        </resources>
+    </cache>
+
+    <cache alias="user">
+        <!--<key-type>java.lang.Long</key-type>-->
+        <!--<value-type>io.github.cepr0.demo.user.User</value-type>-->
+        <expiry>
+            <ttl unit="seconds">60</ttl>
         </expiry>
         <resources>
             <heap unit="entries">2000</heap>

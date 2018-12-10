@@ -3,7 +3,7 @@ package io.github.cepr0.demo.base.controller;
 import io.github.cepr0.demo.base.dto.BaseResponse;
 import io.github.cepr0.demo.base.dto.CreateRequest;
 import io.github.cepr0.demo.base.dto.UpdateRequest;
-import io.github.cepr0.demo.base.model.BaseElement;
+import io.github.cepr0.demo.base.model.BaseEntity;
 import io.github.cepr0.demo.base.service.BaseService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.io.Serializable;
 
 public abstract class BaseController<
 		ID extends Serializable,
-		T extends BaseElement<ID>,
+		T extends BaseEntity<ID>,
 		C extends CreateRequest,
 		U extends UpdateRequest,
 		R extends BaseResponse<ID>

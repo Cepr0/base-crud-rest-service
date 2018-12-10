@@ -4,7 +4,7 @@ import io.github.cepr0.demo.base.dto.BaseResponse;
 import io.github.cepr0.demo.base.dto.CreateRequest;
 import io.github.cepr0.demo.base.dto.UpdateRequest;
 import io.github.cepr0.demo.base.mapper.BaseMapper;
-import io.github.cepr0.demo.base.model.BaseElement;
+import io.github.cepr0.demo.base.model.BaseEntity;
 import io.github.cepr0.demo.base.repo.BaseRepo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +16,7 @@ import java.util.Optional;
 @Transactional
 public class AbstractBaseService<
 		ID extends Serializable,
-		T extends BaseElement<ID>,
+		T extends BaseEntity<ID>,
 		C extends CreateRequest,
 		U extends UpdateRequest,
 		R extends BaseResponse<ID>

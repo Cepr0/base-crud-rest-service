@@ -1,26 +1,33 @@
 package io.github.cepr0.demo.base.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
 
-import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
 import static lombok.AccessLevel.PROTECTED;
 
 @Getter
+@Setter
 @NoArgsConstructor(access = PROTECTED)
-@Entity
-@Inheritance(strategy = TABLE_PER_CLASS)
+//@Entity
+//@Inheritance(strategy = TABLE_PER_CLASS)
+@MappedSuperclass
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "longId")
-public abstract class LongIdEntity extends BaseElement<Long> {
+public abstract class LongIdEntity extends BaseEntity<Long> {
 
 	@Id
 	@GeneratedValue
 	private Long id;
+
+	@JsonIgnore
+	@Version
+	private Long version;
 }
