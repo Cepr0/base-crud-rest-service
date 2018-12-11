@@ -12,7 +12,9 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 public interface BaseMapper<
 		ID extends Serializable,
@@ -21,31 +23,26 @@ public interface BaseMapper<
 		U extends UpdateRequest,
 		R extends BaseResponse<ID>
 		> {
+
 	T fromCreateRequest(C request);
+
 	T fromUpdateRequest(@MappingTarget T element, U request);
+
 	R toResponse(T element);
 
 	default <RefID extends Serializable, Ref extends BaseEntity<RefID>> Set<Ref> toRefSet(@NonNull Collection<RefID> ids, @NonNull BaseRepo<RefID, Ref> repo) {
-		return ids.stream()
-				.map(repo::getOne)
-				.collect(Collectors.toSet());
+		return ids.stream().map(repo::getOne).collect(toSet());
 	}
 
 	default <RefID extends Serializable, Ref extends BaseEntity<RefID>> Set<RefID> toRefIdSet(@NonNull Collection<Ref> elements) {
-		return elements.stream()
-				.map(BaseEntity::getId)
-				.collect(Collectors.toSet());
+		return elements.stream().map(BaseEntity::getId).collect(toSet());
 	}
 
 	default <RefID extends Serializable, Ref extends BaseEntity<RefID>> List<Ref> toRefList(@NonNull Collection<RefID> ids, @NonNull BaseRepo<RefID, Ref> repo) {
-		return ids.stream()
-				.map(repo::getOne)
-				.collect(Collectors.toList());
+		return ids.stream().map(repo::getOne).collect(toList());
 	}
 
 	default <RefID extends Serializable, Ref extends BaseEntity<RefID>> List<RefID> toRefIdList(@NonNull Collection<Ref> elements) {
-		return elements.stream()
-				.map(BaseEntity::getId)
-				.collect(Collectors.toList());
+		return elements.stream().map(BaseEntity::getId).collect(toList());
 	}
 }
