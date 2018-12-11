@@ -4,7 +4,6 @@ import io.github.cepr0.demo.base.service.AbstractBaseService;
 import io.github.cepr0.demo.user.dto.UserCreateRequest;
 import io.github.cepr0.demo.user.dto.UserResponse;
 import io.github.cepr0.demo.user.dto.UserUpdateRequest;
-import io.github.cepr0.demo.user.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
 @Service

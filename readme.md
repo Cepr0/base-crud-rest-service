@@ -148,11 +148,11 @@ To reduce a pressure to the database, the project uses **Ehcache 3** as _Hiberna
 You can add respective entries to the 'resources/ehcache.xml' file for your entities.
 
 Project uses **MapStruct** to generate mappers code automatically. 
-But for complex entities you can make additional codding (see package `io.github.cepr0.demo.user.mapper` as example). 
+But for complex entities you can make additional codding (see package `io.github.cepr0.demo.user` as example). 
 
 Project uses **log4jdbc** to log JDBC queries and their results 
-(see 'pom.xml' for 'log4jdbc-spring-boot-starter' dependency and corresponding settings in the 'resources/application.properties').
-It also logs Hibernate statistic which you can turn off in 'resources/application.properties'.
+(see 'pom.xml' for 'log4jdbc-spring-boot-starter' dependency and corresponding settings in the 'resources/application.yml').
+It also logs Hibernate statistic which you can turn off in 'resources/application.yml'.
 
 Project uses **H2** database. You can replace it to another RDBMS - the project does not use specific SQL dialect, only **Spring Data JPA** query methods.  
 
