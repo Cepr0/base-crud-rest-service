@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.util.Optional;
 
 @Transactional
-public class AbstractBaseService<
+public abstract class AbstractBaseService<
 		ID extends Serializable,
 		T extends BaseEntity<ID>,
 		C extends CreateRequest,
