@@ -4,17 +4,9 @@ import io.github.cepr0.demo.base.dto.BaseResponse;
 import io.github.cepr0.demo.base.dto.CreateRequest;
 import io.github.cepr0.demo.base.dto.UpdateRequest;
 import io.github.cepr0.demo.base.model.BaseEntity;
-import io.github.cepr0.demo.base.repo.BaseRepo;
 import org.mapstruct.MappingTarget;
-import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-
-import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toSet;
 
 public interface BaseMapper<
 		ID extends Serializable,
@@ -29,20 +21,4 @@ public interface BaseMapper<
 	T fromUpdateRequest(@MappingTarget T element, U request);
 
 	R toResponse(T element);
-
-	default <RefID extends Serializable, Ref extends BaseEntity<RefID>> Set<Ref> toRefSet(@NonNull Collection<RefID> ids, @NonNull BaseRepo<RefID, Ref> repo) {
-		return ids.stream().map(repo::getOne).collect(toSet());
-	}
-
-	default <RefID extends Serializable, Ref extends BaseEntity<RefID>> Set<RefID> toRefIdSet(@NonNull Collection<Ref> elements) {
-		return elements.stream().map(BaseEntity::getId).collect(toSet());
-	}
-
-	default <RefID extends Serializable, Ref extends BaseEntity<RefID>> List<Ref> toRefList(@NonNull Collection<RefID> ids, @NonNull BaseRepo<RefID, Ref> repo) {
-		return ids.stream().map(repo::getOne).collect(toList());
-	}
-
-	default <RefID extends Serializable, Ref extends BaseEntity<RefID>> List<RefID> toRefIdList(@NonNull Collection<Ref> elements) {
-		return elements.stream().map(BaseEntity::getId).collect(toList());
-	}
 }

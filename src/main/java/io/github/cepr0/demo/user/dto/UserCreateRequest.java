@@ -1,5 +1,6 @@
 package io.github.cepr0.demo.user.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.cepr0.demo.base.dto.CreateRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,11 +16,13 @@ public class UserCreateRequest extends CreateRequest {
 
 	@NotBlank private String name;
 
+	@JsonProperty("roleIds")
 	@NotNull
 	@Size(min = 1)
-	private Set<String> roleIds;
+	private Set<String> roles;
 
+	@JsonProperty("groupIds")
 	@NotNull
 	@Size(min = 1)
-	private Set<String> groupIds;
+	private Set<String> groups;
 }

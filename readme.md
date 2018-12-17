@@ -74,7 +74,7 @@ based on `CreateRequest`, `UpdateRequest` and `BaseResponse<ID>` respectively:
 
     ```java
     @Mapper(componentModel = "spring", nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
-    public interface UserMapper extends BaseMapper<Long, User, UserCreateRequest, UserUpdateRequest, UserResponse> {
+    public abstract class UserMapper implements BaseMapper<Long, User, UserCreateRequest, UserUpdateRequest, UserResponse> {
     }
     ``` 
 
