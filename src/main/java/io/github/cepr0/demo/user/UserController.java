@@ -37,8 +37,8 @@ public class UserController extends BaseController<Long, User, UserCreateRequest
 	}
 
 	@GetMapping
-	@Override
-	protected ResponseEntity<?> getAll(Pageable pageable) {
+	protected ResponseEntity<?> getAll(@RequestParam(value = "name", required = false) String name, Pageable pageable) {
+		if (name != null) return ResponseEntity.ok(((UserService) service).findByName(name));
 		return super.getAll(pageable);
 	}
 

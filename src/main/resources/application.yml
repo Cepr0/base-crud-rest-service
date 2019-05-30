@@ -10,8 +10,6 @@ logging:
     org:
       springframework:
         orm: debug
-#      hibernate:
-#        stat: debug
 
 log4jdbc:
   dump:
@@ -42,10 +40,10 @@ spring:
         cache:
           use_second_level_cache: true
           default_cache_concurrency_strategy: read-write
-#          use_minimal_puts: true
+          use_minimal_puts: true
           region.factory_class: jcache
-          use_query_cache: false
-#          use_structured_entries: true
+          use_query_cache: true
+          use_structured_entries: true
 
     hibernate:
       ddl-auto: create-drop

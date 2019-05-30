@@ -17,7 +17,7 @@ POST /users
 PATCH /users/1
 DELETE /users/1
 GET /users/1
-PATCH /users
+GET /users
 ```
 
 To use these operations with your entity you have perform the following steps:

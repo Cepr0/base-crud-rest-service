@@ -18,6 +18,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static java.util.Arrays.asList;
+
 @SpringBootApplication
 public class Application {
 
@@ -53,6 +55,9 @@ public class Application {
 				new Role("ADMIN")
 		)));
 
-		userRepo.save(new User("John Smith", roles, groups));
+		userRepo.saveAll(asList(
+				new User("John Smith", roles, groups),
+				new User("Joan Smith", roles, groups)
+		));
 	}
 }

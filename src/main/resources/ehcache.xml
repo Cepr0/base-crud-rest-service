@@ -24,10 +24,10 @@
 
     <cache alias="user">
         <expiry>
-            <ttl unit="minutes">2</ttl>
+            <ttl unit="minutes">1</ttl>
         </expiry>
         <resources>
-            <heap unit="entries">2000</heap>
+            <heap unit="entries">10</heap>
         </resources>
     </cache>
 </config>

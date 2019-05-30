@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -34,10 +35,12 @@ public class User extends LongIdEntity {
 	private String name;
 
 	@Cache(usage = READ_WRITE, region = "roles")
+	@BatchSize(size = 20)
 	@ManyToMany
 	private Set<Role> roles;
 
 	@Cache(usage = READ_WRITE, region = "groups")
+	@BatchSize(size = 20)
 	@ManyToMany
 	private Set<Group> groups;
 }
